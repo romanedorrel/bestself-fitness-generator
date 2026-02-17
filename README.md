@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BestSelf — Fitness & Meal Generation System
 
-## Getting Started
+BestSelf is a full-stack Next.js application built using the App Router architecture. It dynamically generates structured workout routines and meal recommendations based on user-selected parameters.
 
-First, run the development server:
+The system applies rule-based filtering and randomized selection logic through modular components and API routes to produce tailored fitness and nutrition outputs within defined constraints.
+
+---
+
+## 🚀 Core Features
+
+### 🏋️ Workout Generation
+- Filter by body focus
+- Select intensity level
+- Choose workout frequency
+- Dynamic routine generation based on user-defined parameters
+
+### 🍽 Meal Generation
+- Category filtering (seafood, chicken, beef, breakfast, lunch, dinner)
+- Structured meal data modeling
+- Randomized selection within defined constraints
+
+---
+
+## 🧠 Architecture Overview
+
+BestSelf is built using the Next.js App Router and leverages API route handlers located in `app/api/` to manage generation logic.
+
+### Application Structure
+- `app/` — App Router structure
+- `app/api/` — Server-side route handlers
+- Modular UI components
+- Separation of business logic and presentation
+- Parameter validation and controlled randomization
+
+The architecture emphasizes modularity, scalability, and maintainability.
+
+---
+
+## 🛠 Tech Stack
+
+- Next.js (App Router)
+- React
+- JavaScript
+- API Route Handlers
+- CSS
+
+---
+
+## 📦 Installation
 
 ```bash
+git clone https://github.com/romanedorrel/bestself-fitness-generator.git
+cd bestself-fitness-generator
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then visit:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 📈 Future Improvements
 
-## Learn More
+- User authentication and plan persistence
+- Database-backed data storage
+- Expanded workout and meal datasets
+- Performance optimization for larger datasets
+- Automated testing implementation
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Purpose
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+BestSelf demonstrates full-stack application structure using Next.js App Router, modular design principles, and rule-based generation logic within a modern web framework.
