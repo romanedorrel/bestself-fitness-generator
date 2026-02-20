@@ -15,7 +15,7 @@ function ResetPassword() {
         e.preventDefault(); // prevent page reloading on form submit
         setError(''); 
         try {//fetch resetpassword route from api to update user password
-            const res =  await fetch ('api/resetpassword',{
+            const res =  await fetch ('/api/resetpassword',{
                   method: "POST",
                   headers:{"Content-type": "application/json"},
                   body: JSON.stringify({
@@ -27,22 +27,16 @@ function ResetPassword() {
                   form.reset();
                   router.push('/')
               }else{
-                const data = await res.json();
-                setError(data.message || 'No user found.');
+                const data = await res.json().catch(() => ({}));
+                const combinedErrors = Array.isArray(data.errors) ? data.errors.join(", ") : "";
+                setError(combinedErrors || data.message || 'Unable to reset password.');
               }
           } catch (error) {
               console.log("Error changing password:", error);
-              setError('Unexpected error');
+              setError('Unable to reach server. Please try again.');
           };
-  
-      
-        // add some password validation
-        // if (userPassword.length < 5) {
-        //     setError('Password must be at least 5 characters long');
-        // } else if (userPassword === userEmail) {
-        //     setError('Password must not match email address');
-        // }
-    }
+          
+      }
     //return form for resetting user password
     return (
     <div className="login">

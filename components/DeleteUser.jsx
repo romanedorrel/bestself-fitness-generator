@@ -12,8 +12,9 @@ function DeleteUser() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent page reloading on form submit
+        setError('');
         try {//awaits route from deleteuser api route then deletes user passes on based useremail
-            const res =  await fetch ('api/deleteuser',{
+            const res =  await fetch ('/api/deleteuser',{
                   method: "POST",
                   headers:{"Content-type": "application/json"},
                   body: JSON.stringify({
@@ -25,12 +26,13 @@ function DeleteUser() {
                   form.reset();
                   router.push('/signup')
               }else{
-                const data = await res.json();
-                setError(data.message || 'No user found.');
+                const data = await res.json().catch(() => ({}));
+                const combinedErrors = Array.isArray(data.errors) ? data.errors.join(", ") : "";
+                setError(combinedErrors || data.message || 'Unable to delete account.');
               }
           } catch (error) {
               console.log("Error deleting account:", error);
-              setError("Unexpected Error");
+              setError("Unable to reach server. Please try again.");
           };
   
       }
