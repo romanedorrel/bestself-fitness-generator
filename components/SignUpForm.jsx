@@ -16,6 +16,7 @@ function SignUpForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent page reloading on form submit
+        setError('');
 
         // add some password validation
         if(!firstName || !lastName || !userEmail || !userPassword ) {
@@ -23,7 +24,7 @@ function SignUpForm() {
             return;
         }
         try {//fectches signup from api signup route to then post to the body
-          const res =  await fetch ('api/signup',{
+          const res =  await fetch ('/api/signup',{
                 method: "POST",
                 headers:{"Content-type": "application/json"},
                 body: JSON.stringify({
@@ -36,10 +37,13 @@ function SignUpForm() {
                 form.reset();
                 router.push('/')
             }else{
-                console.log("Signup failed.")
+                const data = await res.json().catch(() => ({}));
+                const combinedErrors = Array.isArray(data.errors) ? data.errors.join(", ") : "";
+                setError(combinedErrors || data.message || "Signup failed.");
             }
         } catch (error) {
             console.log("Error during signup:", error);
+            setError("Unable to reach server. Please try again.");
         };
 
     }

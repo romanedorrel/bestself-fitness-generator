@@ -46,14 +46,17 @@ export default function Meal(){
     // useEffect hook for fectching ingredients from the promise using the meals array as a dependency and the meal id as a prop.
     useEffect(()=> {
         async function fetchIngredients(){
-            if(meals.length > 0 ){
-                for (let i = meals.length - 1; i > 0; i--) {
+            if(!meals ||meals.length === 0 ) return;
+
+            const mealsCopy = [...meals];
+
+                for (let i = mealsCopy.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
-                    [meals[i], meals[j]] = [meals[j], meals[i]];
+                    [mealsCopy[i], mealsCopy[j]] = [mealsCopy[j], mealsCopy[i]];
                 }
-            }
+            
          try{//calls getingredients function and stores in single meal variable
-            const fullMeal = await getIngredients(meals[0].idMeal);
+            const fullMeal = await getIngredients(mealsCopy[0].idMeal);
             setMeal(fullMeal.meals[0]);
          } catch(error) {
             console.error(error);
