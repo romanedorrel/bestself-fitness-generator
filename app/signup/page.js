@@ -4,7 +4,7 @@ import FormsBackground from "@/components/FormsBackground"
 export default function SignUp() {
    
     return(
-        <div className="bg-parent">
+        <div>
             <FormsBackground/><SignUpForm/></div>
     )
 

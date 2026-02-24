@@ -12,8 +12,8 @@ function NavBar() {
            <li><Link href='/workouts' className={path.startsWith('/workouts') ? 'active' : null}>Workouts</Link></li> 
            <li><Link href='/meals' className={path.startsWith('/meals') ? 'active' : null}>Meals</Link></li>
            <li ><button className='logout' onClick={() => signOut()}>Log out</button></li>
+           <Link href='/deleteuser' className='signup'>Delete</Link>
         </ul>
-        <Link href='/deleteuser' className='signup'>Delete</Link>
         </nav>
         
         

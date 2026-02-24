@@ -65,7 +65,7 @@ export default function Workouts({onFormSubmit}) {
                     value='stretching' 
                     checked={filteredWorkout === 'stretching'}
                     onChange={(e) => setFilteredWorkout(e.target.value)} />
-                <label htmlFor="stretching"> Stretch </label>
+                <label htmlFor="stretching"> Stretch </label><br /><br />
 
                 <h2>How many workouts do you want to do?</h2><br />
                 <input 
