@@ -1,11 +1,11 @@
-import Background from "@/components/Background";
+import FormsBackground from "@/components/FormsBackground";
 
 export default function AppLayout({ children }) {
   return (
-    <Background>
+    <FormsBackground>
         <div className="app-container">
             {children}
         </div>
-    </Background>
+    </FormsBackground>
   );
 }

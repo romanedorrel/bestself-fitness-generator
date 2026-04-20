@@ -1,4 +1,4 @@
-import FormsBackground from "@/components/FormsBackground";
+import FormsBackground from "@/components/Background";
 
 export default function PageLayout({children}) {
     return <div><FormsBackground/>

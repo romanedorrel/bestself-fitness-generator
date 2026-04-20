@@ -1,7 +1,7 @@
 'use client'
 
 import LoginForm from "@/components/LoginForm";
-import FormsBackground from "@/components/FormsBackground";
+import Background from "@/components/Background";
 
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
   return (
     // <main className={styles.main}>
       <div>
-       <FormsBackground/> 
+       <Background/> 
       <LoginForm/>
 </div>
     // </main>

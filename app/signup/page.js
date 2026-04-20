@@ -1,5 +1,5 @@
 import SignUpForm from "@/components/SignUpForm"
-import FormsBackground from "@/components/FormsBackground"
+import FormsBackground from "@/components/Background"
 
 export default function SignUp() {
    
