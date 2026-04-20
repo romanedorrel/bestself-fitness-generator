@@ -1,5 +1,8 @@
 # BestSelf — Fitness & Meal Generation System
 
+## Live Demo
+https://bestself-fitness-generator.vercel.app
+
 BestSelf is a full-stack Next.js application built using the App Router architecture. It dynamically generates structured workout routines and meal recommendations based on user-selected parameters.
 
 The system applies rule-based filtering and randomized selection logic through modular components and API routes to produce tailored fitness and nutrition outputs within defined constraints.
