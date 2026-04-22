@@ -68,7 +68,33 @@ export default function WorkoutList() {
         //load filtered array to filtered workouts
         setFilteredWorkout(limitedResults);
     }
-    
+    const handleSave = () => {
+        // Example workout data to save
+        const workoutData = {
+            workoutName: "Sample Workout",
+            exercises: filteredWorkout.map(workout => ({
+                id: workout.id,
+                exerciseName: workout.name,
+                focusArea: workout.primaryMuscles.join(', '),
+                intensityLevel: workout.level,
+                instructions: workout.instructions || "",
+            })),
+        };
+
+        // Send POST request to save the workout
+        fetch('/api/workouts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(workoutData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Workout saved successfully:', data);
+        })
+        .catch((error) => {console.error('Error saving workout:', error);});
+    }
 
 return (
     <div>
@@ -89,6 +115,7 @@ return (
                     </Grid>
                     ))}
             </Grid>
+            <button onClick={handleSave}>Save Workout</button>
         </div>
     </div>
 )

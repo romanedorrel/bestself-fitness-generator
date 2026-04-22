@@ -23,16 +23,39 @@ export const authOptions = {
                     if (!validPassword){
                         return null;
                     }
-                    return activeUser;
+                    return {
+                        id: activeUser._id.toString(),
+                        email: activeUser.userEmail
+                    };
                 } catch (error) {
                     console.log('failed login attempt')
                 }
             }
         })
     ],
+
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user._id?.toString() || user.id;
+                token.email = user.userEmail;
+            }
+        return token;
+        },
+        
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id;
+                session.user.email = token.email;
+            }
+        return session;
+        },
+    },
+
     session: {
         strategy: "jwt",
     },
+
     secret:process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: "/"
