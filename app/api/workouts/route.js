@@ -5,6 +5,7 @@ import { authOptions } from '../auth/[...nextauth]/route';
 import  User from '../../../models/user.js';
 import Workout from '../../../models/Workout.js';
 
+
 export async function POST(req) {
     try {
         // // Check if user is authenticated
@@ -18,7 +19,7 @@ export async function POST(req) {
         } catch (e) {
             return NextResponse.json({ message: "Invalid JSON" }, { status: 400 });
         }
-        const { workoutName, exercises } = body;
+        const { workoutName, focusArea, intensityLevel, exercises } = body;
 
         await mongoData();
     
@@ -28,8 +29,8 @@ export async function POST(req) {
         }
 
         // Validate workout data
-        if (!workoutName?.trim() || !exercises) {
-            return NextResponse.json({ message: "Workout name and exercises are required" }, { status: 400 });
+        if (!workoutName?.trim() || !focusArea?.trim() || !intensityLevel?.trim() || !exercises) {
+            return NextResponse.json({ message: "Workout name, focus area, intensity level, and exercises are required" }, { status: 400 });
         }
 
         if (!Array.isArray(exercises) || exercises.length === 0) {
@@ -37,20 +38,22 @@ export async function POST(req) {
         }
 
         for (const exercise of exercises) {
-            if (!exercise.id || !exercise.exerciseName?.trim() || !exercise.focusArea?.trim() || !exercise.intensityLevel?.trim() || exercise.instructions === undefined) {
-                return NextResponse.json({ message: "Each exercise must have an ID, name, focus area, and intensity level" }, { status: 400 });
+            if (!exercise.id || !exercise.exerciseName?.trim() || exercise.instructions === undefined) {
+                return NextResponse.json({ message: "Each exercise must have an ID, name, and instructions" }, { status: 400 });
             }
         }
 
         const newWorkout = new Workout({
             workoutName: workoutName.trim(),
             user: existingUser._id,
+            focusArea: focusArea.trim(),
+            intensityLevel: intensityLevel.trim(),
             exercises: exercises.map(ex => ({
                 id: ex.id,
                 exerciseName: ex.exerciseName.trim(),
-                focusArea: ex.focusArea.trim(),
-                intensityLevel: ex.intensityLevel.trim(),
-                instructions: ex.instructions?.trim() || "",
+                instructions: Array.isArray(ex.instructions) 
+                ? ex.instructions.join(', ').trim()
+                : ex.instructions || "",
             }))
         });
 
@@ -62,4 +65,24 @@ export async function POST(req) {
         console.error("Error creating workout:", error);
         return NextResponse.json({ message: "Failed to create workout. Please try again later." }, { status: 500 });
     }
+}
+
+export async function GET(req) {
+try{
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user){
+        return NextResponse.json({ message: "User must be logged in to view workouts" }, { status: 401 });
+    }
+    await mongoData();
+    const existingUser = await User.findById(session.user.id);
+    if (!existingUser) {
+        return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
+    const workouts = await Workout.find({ user: session.user.id })
+    return NextResponse.json({ workouts }, {status: 200});
+    
+}catch (error) {
+    console.error("Error fetching workouts:", error);
+    return NextResponse.json({ message: "Failed to fetch workouts. Please try again later." }, { status: 500 });
+}
 }

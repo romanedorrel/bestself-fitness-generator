@@ -72,15 +72,17 @@ export default function WorkoutList() {
         // Example workout data to save
         const workoutData = {
             workoutName: "Sample Workout",
+            focusArea: "Chest",
+            intensityLevel: "Beginner",
             exercises: filteredWorkout.map(workout => ({
                 id: workout.id,
                 exerciseName: workout.name,
-                focusArea: workout.primaryMuscles.join(', '),
-                intensityLevel: workout.level,
-                instructions: workout.instructions || "",
+                instructions:  Array.isArray(workout.instructions) 
+                ? workout.instructions.join(', ')
+                : workout.instructions || "",
             })),
         };
-
+        
         // Send POST request to save the workout
         fetch('/api/workouts', {
             method: 'POST',
