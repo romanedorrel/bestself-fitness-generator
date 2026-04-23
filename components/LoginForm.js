@@ -22,16 +22,11 @@ function LoginForm() {
             return;
           }
           //replaces signin page with workouts homepage after successfull login
-            router.replace('workouts')
+            router.replace('generate-workout');
         } catch (error) {
             console.log('Error:', error)
         }
-        // add some password validation
-        // if (userPassword.length < 5) {
-        //     setError('Password must be at least 5 characters long');
-        // } else if (userPassword === userEmail) {
-        //     setError('Password must not match email address');
-        // }
+       
     }
     //Return form for logging in
     return (

@@ -117,7 +117,7 @@ return (
                     </Grid>
                     ))}
             </Grid>
-            <button onClick={handleSave}>Save Workout</button>
+            <button className="button" onClick={handleSave}>Save Workout</button>
         </div>
     </div>
 )

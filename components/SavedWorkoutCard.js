@@ -10,7 +10,6 @@ export default function SavedWorkoutCard({ id, title,intensityLevel, focus, exer
     //returns the structure for a card when passed appropriate props
     return (
         <Card className='card'>
-            
             <CardHeader title={title}/>
             <CardContent><Typography variant="subtitle1">{focus}</Typography></CardContent>
             <CardContent><Typography variant="body1">{intensityLevel}</Typography></CardContent>

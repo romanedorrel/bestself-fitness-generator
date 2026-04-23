@@ -32,10 +32,6 @@ export default function Workouts() {
     
     return (
         <div>
-            <header>
-                <h1>My Workouts</h1>
-            </header>
-
             <div className="workouts">
                 <Grid container spacing={2}>
                     {   savedWorkouts.map((workout) => (
