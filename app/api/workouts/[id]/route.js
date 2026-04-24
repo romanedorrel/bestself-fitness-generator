@@ -1,9 +1,9 @@
 import { mongoData } from "@/lib/dbConnect";
 import { authOptions } from "../../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
-import Workout from "../../../models/Workout.js";
+import Workout from "@/models/Workout.js";
 import { NextResponse } from "next/server";
-import User from "../../../models/user.js";
+import User from "@/models/user.js";
 
 
 export async function GET(req, { params }) {
