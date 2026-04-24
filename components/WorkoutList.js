@@ -4,6 +4,7 @@ import React from "react";
 import WorkoutCard from "./WorkoutCard";
 import { Grid } from "@mui/material";
 import Workouts from "./WorkoutForm";
+import { set } from "mongoose";
 
 //async function for fetching workout dataset and saving in res
 async function getWorkoutsData() {
@@ -17,6 +18,7 @@ async function getWorkoutsData() {
 export default function WorkoutList() {
     const [workouts, setWorkouts] = useState([]);
     const [filteredWorkout,setFilteredWorkout] = useState([]);
+    const [formSelected, setFormSelected] = useState({focus: "",  intensityLevel: ""});
     const backBicep = ['lats', 'middle back', 'lower back', 'biceps'];
     const chestTricep = ['chest','triceps'];
     const legsGlutes = ['glutes','hamstrings','quadriceps','abductors','adductors'];
@@ -40,6 +42,7 @@ export default function WorkoutList() {
         // declaring for for use inside and outside of if statements
         let filteredList;
         let displayList;
+        setFormSelected({focus: selectedWorkout, intensityLevel: fitnessLevel});
         //captures user selections that has multiple muscle groups, and filter by an array including all related muscles
         if(selectedWorkout === 'back'){
             filteredList = workouts.filter(workout => workout.primaryMuscles.some(muscle => backBicep.includes(muscle)));
@@ -71,9 +74,9 @@ export default function WorkoutList() {
     const handleSave = () => {
         // Example workout data to save
         const workoutData = {
-            workoutName: "Sample Workout",
-            focusArea: "Chest",
-            intensityLevel: "Beginner",
+            workoutName: "Daily Workout",
+            focusArea: formSelected.focus,
+            intensityLevel: formSelected.intensityLevel,
             exercises: filteredWorkout.map(workout => ({
                 id: workout.id,
                 exerciseName: workout.name,

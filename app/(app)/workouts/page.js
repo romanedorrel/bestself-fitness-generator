@@ -2,6 +2,7 @@
 import SavedWorkoutCard from '@/components/SavedWorkoutCard';
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
+import Link from 'next/link';
 
 async function getSavedWorkout(){
     const res = await fetch('/api/workouts')
@@ -35,13 +36,17 @@ export default function Workouts() {
             <div className="workouts">
                 <Grid container spacing={2}>
                     {   savedWorkouts.map((workout) => (
-                            <Grid item key={[workout._id]} xs={12} sm={6}>
-                                <SavedWorkoutCard
-                                    id={workout._id}
-                                    title={workout.workoutName}
-                                    focus={workout.focusArea}
-                                    intensityLevel={workout.intensityLevel}
-                                    exercises={workout.exercises}/>
+                            <Grid item key={workout._id} xs={12} sm={6}>
+                                <Link href={`/workouts/${workout._id}`} passHref>
+                                    <SavedWorkoutCard
+                                        id={workout._id}
+                                        title={workout.workoutName}
+                                        focus={workout.focusArea}
+                                        intensityLevel={workout.intensityLevel}
+                                        exercises={workout.exercises}
+                                        createdAt={workout.createdAt}
+                                    />
+                                </Link>
                             </Grid>
                         ))}
                 </Grid>
