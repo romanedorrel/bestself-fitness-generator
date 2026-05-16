@@ -1,11 +1,10 @@
-import FormsBackground from "@/components/FormsBackground";
+import NavBar from "../../components/NavBar";
 
 export default function AppLayout({ children }) {
   return (
-    <FormsBackground>
-        <div className="app-container">
-            {children}
-        </div>
-    </FormsBackground>
+    <div className="app-shell">
+      <NavBar />
+      <main className="app-main">{children}</main>
+    </div>
   );
 }
