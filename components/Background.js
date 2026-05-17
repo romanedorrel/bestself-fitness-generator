@@ -3,13 +3,15 @@ import React from "react";
 
 export default function Background() {
     return (
-        <div> 
+        <div className="auth-background" aria-hidden="true">
             {/* background image for outer forms such as login sig up and reset password */}
             <Image
-                className="bg-img"
+                className="auth-background-image"
                 src="/balance.jpg"
                 alt="Balance"
-                fill={true}
+                fill
+                priority
+                sizes="100vw"
         />
         </div>
         

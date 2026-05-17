@@ -8,10 +8,10 @@ export default function Home() {
   
   return (
     // <main className={styles.main}>
-      <div>
+      <main className="auth-page">
        <Background/> 
       <LoginForm/>
-</div>
+      </main>
     // </main>
   );
 }
