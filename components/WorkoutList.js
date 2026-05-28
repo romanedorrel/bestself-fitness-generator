@@ -82,7 +82,7 @@ export default function WorkoutList() {
         ),
       );
       //filter array by category as stretching is stored in a category and not a muscle group.
-    } else if (selectedWorkout === "Stretching") {
+    } else if (selectedWorkout === "stretching") {
       filteredList = workouts.filter((workout) =>
         workout.category.includes(selectedWorkout),
       );

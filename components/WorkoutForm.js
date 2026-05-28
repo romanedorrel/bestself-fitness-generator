@@ -19,60 +19,72 @@ export default function Workouts({ onFormSubmit }) {
       <h2>Please Select the muscle group you will be focusing on?</h2>
       <br />
       <form onSubmit={handlesubmit}>
-        <input
-          type="radio"
-          id="abdominals"
-          name="abdominals"
-          value="abdominals"
-          checked={filteredWorkout === "abdominals"}
-          onChange={(e) => setFilteredWorkout(e.target.value)}
-        />
-        <label htmlFor="abs"> Abs </label>
-        <input
-          type="radio"
-          id="Back"
-          name="back"
-          value="Back"
-          checked={filteredWorkout === "Back"}
-          onChange={(e) => setFilteredWorkout(e.target.value)}
-        />
-        <label htmlFor="Back"> Back/Bicep </label>
-        <input
-          type="radio"
-          id="Chest"
-          name="chest"
-          value="Chest"
-          checked={filteredWorkout === "Chest"}
-          onChange={(e) => setFilteredWorkout(e.target.value)}
-        />
-        <label htmlFor="Chest"> Chest/Tricep </label>
-        <input
-          type="radio"
-          id="Shoulders"
-          name="shoulders"
-          value="Shoulders"
-          checked={filteredWorkout === "Shoulders"}
-          onChange={(e) => setFilteredWorkout(e.target.value)}
-        />
-        <label htmlFor="Shoulders"> Shoulders/Traps </label>
-        <input
-          type="radio"
-          id="Legs"
-          name="legs"
-          value="Legs"
-          checked={filteredWorkout === "Legs"}
-          onChange={(e) => setFilteredWorkout(e.target.value)}
-        />
-        <label htmlFor="Legs"> Legs/Glutes </label>
-        <input
-          type="radio"
-          id="Stretching"
-          name="stretching"
-          value="Stretching"
-          checked={filteredWorkout === "Stretching"}
-          onChange={(e) => setFilteredWorkout(e.target.value)}
-        />
-        <label htmlFor="Stretching"> Stretch </label>
+        <span className="radio-option">
+          <input
+            type="radio"
+            id="abdominals"
+            name="focus"
+            value="abdominals"
+            checked={filteredWorkout === "abdominals"}
+            onChange={(e) => setFilteredWorkout(e.target.value)}
+          />
+          <label htmlFor="abdominals"> Abs </label>
+        </span>
+        <span className="radio-option">
+          <input
+            type="radio"
+            id="Back"
+            name="focus"
+            value="Back"
+            checked={filteredWorkout === "Back"}
+            onChange={(e) => setFilteredWorkout(e.target.value)}
+          />
+          <label htmlFor="Back"> Back/Bicep </label>
+        </span>
+        <span className="radio-option">
+          <input
+            type="radio"
+            id="Chest"
+            name="focus"
+            value="Chest"
+            checked={filteredWorkout === "Chest"}
+            onChange={(e) => setFilteredWorkout(e.target.value)}
+          />
+          <label htmlFor="Chest"> Chest/Tricep </label>
+        </span>
+        <span className="radio-option">
+          <input
+            type="radio"
+            id="Shoulders"
+            name="focus"
+            value="Shoulders"
+            checked={filteredWorkout === "Shoulders"}
+            onChange={(e) => setFilteredWorkout(e.target.value)}
+          />
+          <label htmlFor="Shoulders"> Shoulders/Traps </label>
+        </span>
+        <span className="radio-option">
+          <input
+            type="radio"
+            id="Legs"
+            name="focus"
+            value="Legs"
+            checked={filteredWorkout === "Legs"}
+            onChange={(e) => setFilteredWorkout(e.target.value)}
+          />
+          <label htmlFor="Legs"> Legs/Glutes </label>
+        </span>
+        <span className="radio-option">
+          <input
+            type="radio"
+            id="Stretching"
+            name="focus"
+            value="stretching"
+            checked={filteredWorkout === "stretching"}
+            onChange={(e) => setFilteredWorkout(e.target.value)}
+          />
+          <label htmlFor="Stretching"> Stretch </label>
+        </span>
         <br />
         <br />
         <h2>How many workouts do you want to do?</h2>

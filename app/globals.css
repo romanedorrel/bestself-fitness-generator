@@ -407,6 +407,11 @@ input::placeholder {
   margin: 0 0.35rem 0 0.75rem;
 }
 
+.radio-option {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .forms input[type="range"] {
   width: min(420px, 100%);
   accent-color: var(--color-primary);
@@ -419,6 +424,10 @@ input::placeholder {
   padding: 0;
   text-align: left;
   position: relative;
+}
+
+.forms + .workouts {
+  margin-top: 2rem;
 }
 
 .meal {
