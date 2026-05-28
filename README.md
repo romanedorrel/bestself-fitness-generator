@@ -230,9 +230,3 @@ The project emphasizes building connected application systems rather than isolat
 # Author
 
 Romane Dorrel
-
-GitHub:
-https://github.com/romanedorrel
-
-Live Application:
-https://bestself-fitness-generator.vercel.app
